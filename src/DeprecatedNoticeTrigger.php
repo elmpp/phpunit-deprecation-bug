@@ -11,6 +11,7 @@ class DeprecatedNoticeTrigger {
             @trigger_error('This should be the exception message that is expected', E_USER_WARNING);
         }
         catch (\Throwable $e) { // in this case would be our \ErrorException
+            restore_error_handler();
             throw new \RuntimeException($e->getMessage());
         }
         restore_error_handler();
